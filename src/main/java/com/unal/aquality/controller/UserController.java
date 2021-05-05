@@ -4,6 +4,7 @@ import com.unal.aquality.model.User;
 import com.unal.aquality.repository.UserRepository;
 import com.unal.aquality.service.UserService;
 import com.unal.aquality.service.UserServiceImpl;
+import javafx.beans.binding.ObjectExpression;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,18 +20,12 @@ public class UserController {
     private UserService userService;
 
     //GET
-
-    @GetMapping("")
-    public String view() {
-        return "register";
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity getUser(@PathVariable ObjectId id) throws Exception {
         HashMap<String, Object> res = new HashMap<>();
         User user = userService.getUser(id);
         if(user == null){
-            res.put("msg", "get user unsuccessfully");
+            res.put("msg", "user does not exist");
         }else{
             res.put("user", user);
             res.put("msg", "get user successfully");
@@ -53,11 +48,15 @@ public class UserController {
     }
 
     //DELETE
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity deleteUser(@PathVariable String id) throws Exception {
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteUser(@PathVariable ObjectId id){
         HashMap<String, Object> res = new HashMap<>();
-        userService.deleteUser(id);
-        res.put("msg", "Successfully add");
+        ObjectId _id = userService.deleteUser(id);
+        if (_id == null){
+            res.put("msg", "user id is null or user no exist");
+        }else{
+            res.put("msg", "Successfully delete user "+ _id.toHexString());
+        }
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 }

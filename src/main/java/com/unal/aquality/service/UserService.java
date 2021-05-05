@@ -5,7 +5,7 @@ import org.bson.types.ObjectId;
 
 public interface UserService {
     User registerUser(User user) throws Exception;
-    User getUser(ObjectId userId) throws Exception;
+    User getUser(ObjectId userId);
     User updateUser(User user) throws Exception;
-    void deleteUser(String userId) throws Exception;
+    ObjectId deleteUser(ObjectId userId);
 }

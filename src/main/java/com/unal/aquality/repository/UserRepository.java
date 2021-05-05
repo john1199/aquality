@@ -10,4 +10,6 @@ public interface UserRepository extends MongoRepository<User, String> {
 
     User findBy_id(ObjectId userId);
     User findByemail(String email);
+
+    void deleteBy_id(ObjectId userId);
 }

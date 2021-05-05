@@ -3,20 +3,22 @@ package com.unal.aquality.service;
 import com.unal.aquality.model.User;
 import com.unal.aquality.repository.UserRepository;
 import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private final UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-    public UserServiceImpl(UserRepository userRepository) {
-        super();
-        this.userRepository = userRepository;
-    }
 
     @Override
-    public User getUser(ObjectId userId) throws Exception {
-        return userRepository.findBy_id(userId);
+    public User getUser(ObjectId userId){
+        try{
+            return userRepository.findBy_id(userId);
+        }catch (Exception e){
+            return null;
+        }
     }
 
     @Override
@@ -36,11 +38,12 @@ public class UserServiceImpl implements UserService {
         return user;
     }
     @Override
-    public void deleteUser(String userId) throws Exception {
-        if (userId == null) {
-            throw new Exception("user id is null");
+    public ObjectId deleteUser(ObjectId userId){
+        if (getUser(userId) == null) {
+            return null;
         } else {
-            userRepository.deleteById(userId);
+            userRepository.deleteBy_id(userId);
+            return userId;
         }
     }
 }
