@@ -1,10 +1,7 @@
 package com.unal.aquality.controller;
 
 import com.unal.aquality.model.User;
-import com.unal.aquality.repository.UserRepository;
 import com.unal.aquality.service.UserService;
-import com.unal.aquality.service.UserServiceImpl;
-import javafx.beans.binding.ObjectExpression;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

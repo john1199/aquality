@@ -4,6 +4,7 @@ import com.unal.aquality.model.User;
 import com.unal.aquality.repository.UserRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,6 +26,7 @@ public class UserServiceImpl implements UserService {
     public User registerUser(User user) throws Exception {
         if(userRepository.findByemail(user.getEmail()) == null){
             user.setId(ObjectId.get());
+            user.setPassword(encode(user.getEmail()));
             user = userRepository.save(user);
             return user;
         }else{
@@ -46,4 +48,14 @@ public class UserServiceImpl implements UserService {
             return userId;
         }
     }
+    public String encode(String password) throws Exception{
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String hashedPass1 = bCryptPasswordEncoder.encode(password);
+        return hashedPass1;
+    }
+    public boolean decode(String password,String encodedPassword) throws Exception{
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        return bCryptPasswordEncoder.matches(password, encodedPassword);
+    }
+
 }
