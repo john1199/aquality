@@ -4,7 +4,10 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-enum Rol {
+import java.util.ArrayList;
+import java.util.HashMap;
+
+ enum Rol {
     LOCAL, ADMIN;
 }
 
@@ -13,6 +16,7 @@ public class User {
 
     @Id
     private ObjectId _id;
+
     private String name;
     private String surname;
     private String username;
@@ -85,5 +89,66 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+
+    public String toString(){
+        return name+" "+surname + " "+ username +" "+email +" "+rol+" "+password;
+    }
+
+    public ArrayList<String> noNull(){
+        ArrayList<String> hey = new ArrayList<>();
+        if(name==null||name.equals("")){
+            hey.add("name");
+        }
+        if(surname==null){
+            hey.add("surname");
+        }
+        if(email==null||email.equals("")){
+            hey.add("email");
+        }
+        if(rol==null){
+            hey.add("rol");
+        }
+        if(password==null||password.equals("")){
+            hey.add("password");
+        }
+        return hey;
+    }
+
+    public ArrayList<String> GramareRr(){
+        ArrayList<String> hey = new ArrayList<>();
+
+
+        for(int i =0;i<name.length();i++){
+            if(!((name.charAt(i)>=65&&name.charAt(i)<=90)||(name.charAt(i)>=97&&name.charAt(i)<=122))) {
+                hey.add("name");
+                i=name.length();
+            }
+        }
+        for(int i =0;i<surname.length();i++){
+            if(!((surname.charAt(i)>=65&&surname.charAt(i)<=90)||(surname.charAt(i)>=97&&surname.charAt(i)<=122))) {
+                hey.add("surname");
+                i=surname.length();
+            }
+        }
+        if(password.length()<6){
+            hey.add("password");
+        }
+        return hey;
+    }
+
+    public HashMap<String,ArrayList<String>> Error(){
+        HashMap<String,ArrayList<String>> hey = new HashMap<>();
+        if(!noNull().isEmpty()){
+            hey.put("null",noNull());
+
+        }else{
+            ArrayList<String> gram = GramareRr();
+            if(!gram.isEmpty()){
+                hey.put("gram",gram);
+            }
+        }
+        return hey;
     }
 }
