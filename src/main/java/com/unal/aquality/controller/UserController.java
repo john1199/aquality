@@ -35,7 +35,7 @@ public class UserController {
                 res.put("msg", "get user successfully");
             }
         }catch(Exception e){
-            res.put("msg","no se recibio id");
+            res.put("msg",e.getMessage());
             state=HttpStatus.NOT_ACCEPTABLE;
         }
 
@@ -46,12 +46,12 @@ public class UserController {
     @PostMapping("/add")
     public ResponseEntity saveUser(@RequestBody User user) throws Exception {
         HashMap<String, Object> res = new HashMap<>();
-        System.out.println(user.toString());
+
         HttpStatus state = HttpStatus.OK;
         try{
             User userDB = userService.registerUser(user);
             if (userDB == null){
-                res.put("msg", "user exists, cannot be added");
+                res.put("msg", "cannot be added");
             }else{
                 res.put("user", user);
                 res.put("msg", "Successfully add");
@@ -84,7 +84,7 @@ public class UserController {
                 res.put("msg", "Successfully delete user "+ _id.toHexString());
             }
         }catch(Exception e){
-            res.put("msg","no se recibio id");
+            res.put("msg",e.getMessage());
             state=HttpStatus.NOT_ACCEPTABLE;
         }
 
