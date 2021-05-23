@@ -1,17 +1,20 @@
 package com.unal.aquality.service;
 
+import com.unal.aquality.controller.UserDto;
 import com.unal.aquality.model.User;
 import com.unal.aquality.repository.UserRepository;
-import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.bson.types.ObjectId;;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
-    @Autowired
-    private UserRepository userRepository;
 
+    private UserRepository userRepository;
+    public UserServiceImpl(UserRepository userRepository){
+        super();
+        this.userRepository = userRepository;
+    }
 
     @Override
     public User getUser(ObjectId userId){
@@ -21,14 +24,19 @@ public class UserServiceImpl implements UserService {
             return null;
         }
     }
-
+    public User userExist(String email){
+        try{
+            return userRepository.findByemail(email);
+        }catch (Exception e){
+            return null;
+        }
+    }
     @Override
-    public User registerUser(User user) throws Exception {
-        if(userRepository.findByemail(user.getEmail()) == null){
-            user.setId(ObjectId.get());
-            user.setPassword(encode(user.getEmail()));
-            user = userRepository.save(user);
-            return user;
+    public User registerUser(UserDto userDto) throws Exception{
+        System.out.println(userDto.getName());
+        if(userRepository.findByemail(userDto.getEmail()) == null){
+            User user = new User(userDto.getName(),userDto.getSurname(), userDto.getUsername(),userDto.getEmail(),userDto.getRol(),encode(userDto.getPassword()));
+            return userRepository.save(user);
         }else{
             return null;
         }
@@ -53,7 +61,7 @@ public class UserServiceImpl implements UserService {
         String hashedPass1 = bCryptPasswordEncoder.encode(password);
         return hashedPass1;
     }
-    public boolean decode(String password,String encodedPassword) throws Exception{
+    public boolean decode(String password,String encodedPassword){
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return bCryptPasswordEncoder.matches(password, encodedPassword);
     }
