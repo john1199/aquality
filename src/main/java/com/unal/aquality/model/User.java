@@ -4,31 +4,30 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-enum Rol {
-    LOCAL, ADMIN;
-}
-
 @Document(collection = "Users")
 public class User {
 
-    @Id
-    private ObjectId _id;
-    private String name;
-    private String surname;
-    private String username;
+            @Id
+            private ObjectId _id;
+            private String name;
+            private String surname;
+            private String username;
 
-    private String email;
-    private Rol rol;
-    private String password;
+            private String email;
+            private Rol rol;
+            private String password;
 
-    public User(String name, String surname, String username, String email, Rol rol, String password) {
-        this.name = name;
-        this.surname = surname;
-        this.username = username;
-        this.email = email;
-        this.rol = rol;
-        this.password = password;
-    }
+            public User(){
+
+            }
+            public User(String name, String surname, String username, String email, Rol rol, String password) {
+                this.name = name;
+                this.surname = surname;
+                this.username = username;
+                this.email = email;
+                this.rol = rol;
+                this.password = password;
+            }
 
     public String getName() {
         return name;
@@ -39,7 +38,7 @@ public class User {
         return _id.toHexString();
     }
 
-    public void setId(ObjectId id) {
+    public void set_id(ObjectId id) {
         this._id = id;
     }
 
