@@ -7,6 +7,9 @@ import org.bson.types.ObjectId;;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -33,7 +36,6 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public User registerUser(UserDto userDto) throws Exception{
-        System.out.println(userDto.getName());
         if(userRepository.findByemail(userDto.getEmail()) == null){
             User user = new User(userDto.getName(),userDto.getSurname(), userDto.getUsername(),userDto.getEmail(),userDto.getRol(),encode(userDto.getPassword()));
             return userRepository.save(user);

@@ -4,6 +4,9 @@ import com.unal.aquality.model.Rol;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class UserDto{
 
     private ObjectId _id;
@@ -82,4 +85,6 @@ public class UserDto{
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 }
