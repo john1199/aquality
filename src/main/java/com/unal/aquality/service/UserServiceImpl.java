@@ -7,6 +7,8 @@ import org.bson.types.ObjectId;;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.xml.bind.SchemaOutputResolver;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -33,8 +35,8 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public User registerUser(UserDto userDto) throws Exception{
-        System.out.println(userDto.getName());
-        if(userRepository.findByemail(userDto.getEmail()) == null){
+        System.out.println(userRepository.findByusername(userDto.getUsername()));
+        if(userRepository.findByemail(userDto.getEmail()) == null && userRepository.findByusername(userDto.getUsername()) ==null){
             User user = new User(userDto.getName(),userDto.getSurname(), userDto.getUsername(),userDto.getEmail(),userDto.getRol(),encode(userDto.getPassword()));
             return userRepository.save(user);
         }else{
@@ -43,9 +45,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(User user) throws Exception {
-        user = userRepository.save(user);
-        return user;
+    public User updateUser(UserDto userDto) throws Exception {
+        User user = userRepository.findBy_id(userDto.get_id());
+        if(user == null){
+            user.setName(userDto.getName());
+            user.setSurname(userDto.getSurname());
+            user.setEmail(userDto.getEmail());
+            user.setRol(userDto.getRol());
+            user.setPassword(encode(userDto.getPassword()));
+            userRepository.save(user);
+            return user;
+        }else {
+            return null;
+        }
     }
     @Override
     public ObjectId deleteUser(ObjectId userId){
