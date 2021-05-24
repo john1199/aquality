@@ -5,10 +5,10 @@ import com.unal.aquality.model.User;
 import org.bson.types.ObjectId;
 
 public interface UserService {
-    User registerUser(UserDto user) throws Exception;
+    User registerUser(UserDto userDto) throws Exception;
     User getUser(ObjectId userId);
     User userExist(String email);
-    User updateUser(User user) throws Exception;
+    User updateUser(UserDto userDto) throws Exception;
     ObjectId deleteUser(ObjectId userId);
     boolean decode(String password,String encodedPassword);
 }

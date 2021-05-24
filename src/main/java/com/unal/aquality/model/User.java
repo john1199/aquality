@@ -34,7 +34,7 @@ public class User {
     }
 
     // ObjectId needs to be converted to string
-    public String getId() {
+    public String get_id() {
         return _id.toHexString();
     }
 

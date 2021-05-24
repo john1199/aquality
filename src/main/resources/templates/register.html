@@ -66,6 +66,22 @@
                     </div>
                 </div>
             </div>
+        </div>
+            <div th:if="${param.password}">
+                <div class="alert alert-info m2 ">
+                    Contraseña Incorrecta!!
+                </div>
+            </div>
+            <div th:if="${param.user}">
+                <div class="alert alert-info m2 ">
+                    Usuario no existe!!
+                </div>
+            </div>
+            <div th:if="${param.exist}">
+                <div class="alert alert-info m2 ">
+                    Campos en blanco!!
+                </div>
+            </div>
             <h1 class="text-center p-2">Registro</h1>
             <form th:action="@{/register}" method="post" th:object="${user}">
                 <div class="mb-3">
@@ -78,7 +94,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="username">username</label>
-                    <input type="password" id="username" class="form-control" th:field="*{username}" required autofocus="autofocus" />
+                    <input type="text" id="username" class="form-control" th:field="*{username}" required autofocus="autofocus" />
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="email">Email</label>
@@ -86,7 +102,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="rol">rol</label>
-                    <input type="password" id="rol" class="form-control" th:field="*{rol}" required autofocus="autofocus" />
+                    <input type="text" id="rol" class="form-control" th:field="*{rol}" required autofocus="autofocus" />
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="password">Password</label>

@@ -4,10 +4,7 @@ import com.unal.aquality.model.User;
 import com.unal.aquality.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/")
@@ -34,7 +31,26 @@ public class UserController {
 
         return "redirect:/register?"+parametros;
     }
-
+    @PostMapping("/signin")
+    public String login(@RequestParam String email, @RequestParam String password){
+        boolean flag = false;
+        User user = userService.userExist(email);
+        if(user != null){
+            flag = userService.decode(password, user.getPassword());
+            if(flag){
+                return "redirect:/register?success";
+            }else{
+                return "redirect:/register?password";
+            }
+        }else{
+            return "redirect:/register?user";
+        }
+    }
+    @PutMapping("/update")
+    public String update(@ModelAttribute UserDto userDto) throws Exception {
+        User user = userService.updateUser(userDto);
+        return user.get_id();
+    }
     @ModelAttribute("user")
     public UserDto userDto(){
         return new UserDto();
