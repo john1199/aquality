@@ -2,7 +2,6 @@ package com.unal.aquality.controller;
 
 import com.unal.aquality.model.Rol;
 import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
 
 public class UserDto{
 

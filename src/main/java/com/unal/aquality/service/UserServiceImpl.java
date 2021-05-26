@@ -1,6 +1,7 @@
 package com.unal.aquality.service;
 
 import com.unal.aquality.controller.UserDto;
+import com.unal.aquality.model.Rol;
 import com.unal.aquality.model.User;
 import com.unal.aquality.repository.UserRepository;
 import org.bson.types.ObjectId;;
@@ -35,8 +36,10 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public User registerUser(UserDto userDto) throws Exception{
-        System.out.println(userRepository.findByusername(userDto.getUsername()));
         if(userRepository.findByemail(userDto.getEmail()) == null && userRepository.findByusername(userDto.getUsername()) ==null){
+            if(userDto.getRol() == null){
+                userDto.setRol(Rol.LOCAL);
+            }
             User user = new User(userDto.getName(),userDto.getSurname(), userDto.getUsername(),userDto.getEmail(),userDto.getRol(),encode(userDto.getPassword()));
             return userRepository.save(user);
         }else{

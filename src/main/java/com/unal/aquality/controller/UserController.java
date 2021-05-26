@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired
     UserService userService;
+
     @GetMapping("/register")
     public String viewRegister(){
         return "register";
     }
+
     @PostMapping("/register")
     public String register(@ModelAttribute("user")UserDto userDto) throws Exception{
         User user = userService.registerUser(userDto);
@@ -24,6 +26,7 @@ public class UserController {
             return "redirect:/register?error";
         }
     }
+
     @PostMapping("/signin")
     public String login(@RequestParam String email, @RequestParam String password){
         boolean flag = false;
@@ -40,9 +43,13 @@ public class UserController {
         }
     }
     @PutMapping("/update")
-    public String update(@ModelAttribute UserDto userDto) throws Exception {
+    public String update(@ModelAttribute("user")UserDto userDto) throws Exception {
         User user = userService.updateUser(userDto);
         return user.get_id();
+    }
+    @GetMapping("/")
+    public String ss(@ModelAttribute UserDto userDto) throws Exception {
+        return "prueba";
     }
     @ModelAttribute("user")
     public UserDto userDto(){
