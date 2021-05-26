@@ -3,12 +3,10 @@ package com.unal.aquality.controller;
 import com.unal.aquality.model.Rol;
 import org.bson.types.ObjectId;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public class UserDto{
 
     private ObjectId _id;
+    private int document;
     private String name;
     private String surname;
     private String username;
@@ -20,13 +18,22 @@ public class UserDto{
     public UserDto() {
     }
 
-    public UserDto(String name, String surname, String username, String email, Rol rol, String password) {
+    public UserDto(int document, String name, String surname, String username, String email, Rol rol, String password) {
+        this.document = document;
         this.name = name;
         this.surname = surname;
         this.username = username;
         this.email = email;
         this.rol = rol;
         this.password = password;
+    }
+
+    public int getDocument() {
+        return document;
+    }
+
+    public void setDocument(int document) {
+        this.document = document;
     }
 
     public ObjectId get_id() {

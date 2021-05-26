@@ -27,12 +27,12 @@ btn {
 }
 
 .img1 {
-  background-image: url("assets/carousel1.jpg");
+  background-image: url("../images/carousel1.jpg");
   background-size: cover;
   background-position: center;
 }
 .img2 {
-  background-image: url("assets/carousel2.jpg");
+  background-image: url("../images/carousel2.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -56,4 +56,6 @@ btn {
 
 #alternativelogin{
   color: #ffFFFf !important;
+}
+.msg {
 }

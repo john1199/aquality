@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Bootstrap CSS -->
-    
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -24,7 +24,7 @@
       href="https://fonts.googleapis.com/css2?family=Spartan:wght@300;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="Style-Register.css" />
+    <link rel="stylesheet" href="../static/css/styleRegister.css" th:href="@{/css/styleRegister.css}"/>
     <title>Hello, world!</title>
   </head>
   <body class="bg-dark">
@@ -104,38 +104,117 @@
           class="col-lg-5 d-flex flex-column align-items-end min-vh-100 mb-auto"
         >
           <div class="px-lg-5 pt-lg-4 pb-lg-3 p-4 w-100">
-            <img src="./assets/logo.jpg" class="logo img-fluid" alt="logo" />
+            <img th:src="@{/images/logo.jpg}" class="logo img-fluid" alt="logo" />
+          </div>
+          <div class="col-auto bg-light ">
+            <div th:if="${param.success}">
+              <div class="alert alert-info m2 ">
+                Te has registrado correctamente!!
+              </div>
+            </div>
+            <div th:if="${param.error}">
+              <div class="alert alert-danger m2 ">
+                Registro no exitoso!!
+                <div th:if="${param.EE}">
+                  El correo o el username ya existen
+                </div>
+              </div>
+            </div>
+            <div th:if="${param.alert}">
+              <div class="alert alert-warning m2 ">
+                <div th:if="${param.Empty}">
+                  La variable esta vacia o no existe:
+                  <div th:if="${param.N}">
+                    Nombre
+                  </div>
+                  <div th:if="${param.UN}">
+                    Nombre de usuario
+                  </div>
+                  <div th:if="${param.SN}">
+                    apellido
+                  </div>
+                  <div th:if="${param.E}">
+                    correo
+                  </div>
+                  <div th:if="${param.P}">
+                    contraseña
+                  </div>
+                </div>
+                <div th:if="${param.II}">
+                  La variable contiene caracteres erroneos:
+                  <div th:if="${param.N}">
+                    Nombre
+                  </div>
+                  <div th:if="${param.SN}">
+                    apellido
+                  </div>
+                </div>
+                <div th:if="${param.L}">
+                  La variable tiene una longitud demaciado corta:
+                  <div th:if="${param.P}">
+                    contraseña
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="px-lg-5 py-lg-4 p-4 w-100 align-selft-center">
             <h1 class="mb-4 fw-bold">! Bienvenido ¡</h1>
-            <form class="mb-5">
-              <div class="mb-4">
+            <form class="mb-4" th:action="@{/register}" method="post" th:object="${user}">
+              <div class="mb-3">
+                <label for="exampleInputId1" class="form-label fw-bold"
+                >Cédula</label
+                >
+                <input
+                        type="number"
+                        class="form-control bg-dark-x border-0"
+                        id="exampleInputId1"
+                        aria-describedby="emailHelp"
+                        placeholder="Ingresa tu cedula"
+                        th:field="*{document}"
+                />
+              </div>
+              <div class="mb-3">
                 <label for="exampleInputName1" class="form-label fw-bold"
                   >Nombre</label
                 >
                 <input
-                  type="name"
+                  type="text"
                   class="form-control bg-dark-x border-0"
                   id="exampleInputName1"
                   aria-describedby="nameHelp"
                   placeholder="Ingresa tu nombre"
-                                  
+                  th:field="*{name}"
                 />
               </div>
-              <div class="mb-4">
-                <label for="exampleInputId1" class="form-label fw-bold"
-                  >Cedula</label
+              <div class="mb-3">
+                <label for="exampleInputSurname1" class="form-label fw-bold"
+                >Apellido</label
                 >
                 <input
-                  type="id"
-                  class="form-control bg-dark-x border-0"
-                  id="exampleInputId1"
-                  aria-describedby="emailHelp"
-                  placeholder="Ingresa tu cedula"
-                                  
+                        type="text"
+                        class="form-control bg-dark-x border-0"
+                        id="exampleInputSurname1"
+                        aria-describedby="nameHelp"
+                        placeholder="Ingresa tu apellido"
+                        th:field="*{surname}"
                 />
               </div>
-              <div class="mb-4">
+
+              <div class="mb-3">
+                <label for="exampleInputUsername1" class="form-label fw-bold"
+                >Username</label
+                >
+                <input
+                        type="text"
+                        class="form-control bg-dark-x border-0"
+                        id="exampleInputUsername1"
+                        aria-describedby="nameHelp"
+                        placeholder="Ingresa tu usuario"
+                        th:field="*{username}"
+                />
+              </div>
+              <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label fw-bold"
                   >Email</label
                 >
@@ -145,10 +224,11 @@
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
                   placeholder="Ingresa tu email"
+                  th:field="*{email}"
                                   
                 />
               </div>
-              <div class="mb-4">
+              <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label fw-bold"
                   >Contraseña</label
                 >
@@ -157,6 +237,7 @@
                   class="form-control bg-dark-x border-0 mb-2"
                   id="exampleInputPassword1"
                   placeholder="Ingresa tu contraseña"
+                  th:field="*{password}"
                   
                 />
               </div>
@@ -192,8 +273,8 @@
             class="text-center px-lg-5 pt-lg-3 pb-lg-4 pb-lg-4 w-100 mt-auto"
           >
             <p class="d-inline-block mb-0">¿Ya tienes una cuenta?</p>
-            <a href="file:///C:/Users/ivonn/Downloads/LoginBootstrap5/index.html" class="text-light fw-bold text-decoration-none"
-              >Inicia sesion ahora</a
+            <a href="/" class="text-light fw-bold text-decoration-none"
+              th:href="@{/login}">Inicia sesion ahora</a
             >
           </div>
         </div>

@@ -27,24 +27,24 @@ btn {
 }
 
 .img1 {
-  background-image: url("assets/carousel1.jpg");
+  background-image: url("../images/carousel1.jpg");
   background-size: cover;
   background-position: center;
 }
 .img2 {
-  background-image: url("assets/carousel2.jpg");
+  background-image: url("../images/carousel2.jpg");
   background-size: cover;
   background-position: center;
 }
 
 
 .img3 {
-  background-image: url("assets/imgo1.jpeg");
+  background-image: url("../images/imgo1.jpeg");
   background-size: cover;
   background-position: center;
 }
 .img4 {
-  background-image: url("assets/imgo2.jpeg");
+  background-image: url("../images/imgo2.jpeg");
   background-size: cover;
   background-position: center;
 }

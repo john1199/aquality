@@ -10,6 +10,7 @@ public class User {
 
             @Id
             private ObjectId _id;
+            private int document;
             private String name;
             private String surname;
             private String username;
@@ -21,7 +22,8 @@ public class User {
             public User(){
 
             }
-            public User(String name, String surname, String username, String email, Rol rol, String password) {
+            public User(int document, String name, String surname, String username, String email, Rol rol, String password) {
+                this.document = document;
                 this.name = name;
                 this.surname = surname;
                 this.username = username;
@@ -29,6 +31,14 @@ public class User {
                 this.rol = rol;
                 this.password = password;
             }
+
+    public int getDocument() {
+        return document;
+    }
+
+    public void setDocument(int document) {
+        this.document = document;
+    }
 
     public String getName() {
         return name;

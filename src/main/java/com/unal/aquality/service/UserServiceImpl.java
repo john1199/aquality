@@ -8,10 +8,6 @@ import org.bson.types.ObjectId;;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import javax.xml.bind.SchemaOutputResolver;
-
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -42,7 +38,7 @@ public class UserServiceImpl implements UserService {
             if(userDto.getRol() == null){
                 userDto.setRol(Rol.LOCAL);
             }
-            User user = new User(userDto.getName(),userDto.getSurname(), userDto.getUsername(),userDto.getEmail(),userDto.getRol(),encode(userDto.getPassword()));
+            User user = new User(userDto.getDocument(), userDto.getName(),userDto.getSurname(), userDto.getUsername(),userDto.getEmail(),userDto.getRol(),encode(userDto.getPassword()));
             return userRepository.save(user);
         }else{
             return null;

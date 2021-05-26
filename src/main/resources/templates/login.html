@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
@@ -24,7 +24,7 @@
       href="https://fonts.googleapis.com/css2?family=Spartan:wght@300;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style-login.css"/>
+    <link rel="stylesheet" href="./assets/CSS/style-login.css" th:href="@{/css/style-login.css}"/>
     <title>Hello, world!</title>
   </head>
   <body class="bg-dark">
@@ -104,11 +104,26 @@
           class="col-lg-5 d-flex flex-column align-items-end min-vh-100 mb-auto"
         >
           <div class="px-lg-5 pt-lg-4 pb-lg-3 p-4 w-100">
-            <img src="./assets/logo.jpg" class="logo img-fluid" alt="logo" />
+            <img th:src="@{/images/logo.jpg}" class="logo img-fluid" alt="logo" />
+          </div>
+          <div class="msg w-100" th:if="${param.success}">
+            <div class="alert alert-info m2 ">
+              Inicio Correcto!!
+            </div>
+          </div>
+          <div  class="align-selft-center msg w-100"  th:if="${param.password}">
+            <div class="alert alert-info m2 ">
+              Contraseña Incorrecta!!
+            </div>
+          </div>
+          <div  class="align-selft-center msg w-100"  th:if="${param.user}">
+            <div class="alert alert-info m2 ">
+              Usuario no existe!!
+            </div>
           </div>
           <div class="px-lg-5 py-lg-4 p-4 w-100 align-selft-center">
             <h1 class="mb-4 fw-bold">Bienvenido de Vuelta</h1>
-            <form class="mb-5">
+            <form class="mb-5" th:action="@{/login}" method="post" th:object="${user}">
               <div class="mb-4">
                 <label for="exampleInputEmail1" class="form-label fw-bold"
                   >Email</label
@@ -119,6 +134,7 @@
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
                   placeholder="Ingresa tu email"
+                  th:field="*{email}"
                                   
                 />
               </div>
@@ -131,6 +147,7 @@
                   class="form-control bg-dark-x border-0 mb-2"
                   id="exampleInputPassword1"
                   placeholder="Ingresa tu contraseña"
+                  th:field="*{password}"
                   
                 />
                 <a href="" class="form-text text-muted text-decoration-none" id="passf"
@@ -163,7 +180,7 @@
             class="text-center px-lg-5 pt-lg-3 pb-lg-4 pb-lg-4 w-100 mt-auto"
           >
             <p class="d-inline-block mb-0">¿No tienes una cuenta?</p>
-            <a href="" class="text-light fw-bold text-decoration-none"
+            <a th:href="@{/register}" class="text-light fw-bold text-decoration-none"
               >Crea una ahora!!</a
             >
           </div>

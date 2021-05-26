@@ -17,6 +17,11 @@ public class UserController {
         return "register";
     }
 
+    @GetMapping("/login")
+    public String viewLogin(){
+        return "login";
+    }
+
     @PostMapping("/register")
     public String register(@ModelAttribute("user")UserDto userDto) throws Exception{
         String parametros = Error(userDto);
@@ -34,19 +39,19 @@ public class UserController {
         return "redirect:/register?"+parametros;
     }
 
-    @PostMapping("/signin")
+    @PostMapping("/login")
     public String login(@RequestParam String email, @RequestParam String password){
         boolean flag = false;
         User user = userService.userExist(email);
         if(user != null){
             flag = userService.decode(password, user.getPassword());
             if(flag){
-                return "redirect:/register?success";
+                return "redirect:/login?success";
             }else{
-                return "redirect:/register?password";
+                return "redirect:/login?password";
             }
         }else{
-            return "redirect:/register?user";
+            return "redirect:/login?user";
         }
     }
     @PutMapping("/update")
