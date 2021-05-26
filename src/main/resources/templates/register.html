@@ -24,6 +24,47 @@
             <div th:if="${param.error}">
             <div class="alert alert-danger m2 ">
                 Registro no exitoso!!
+                <div th:if="${param.EE}">
+                    El correo o el username ya existen
+                </div>
+            </div>
+            </div>
+            <div th:if="${param.alert}">
+                <div class="alert alert-warning m2 ">
+                    <div th:if="${param.Empty}">
+                        La variable esta vacia o no existe:
+                        <div th:if="${param.N}">
+                            Nombre
+                        </div>
+                        <div th:if="${param.UN}">
+                            Nombre de usuario
+                        </div>
+                        <div th:if="${param.SN}">
+                            apellido
+                        </div>
+                        <div th:if="${param.E}">
+                            correo
+                        </div>
+                        <div th:if="${param.P}">
+                            contraseña
+                        </div>
+                    </div>
+                    <div th:if="${param.II}">
+                        La variable contiene caracteres erroneos:
+                        <div th:if="${param.N}">
+                            Nombre
+                        </div>
+                        <div th:if="${param.SN}">
+                            apellido
+                        </div>
+                    </div>
+                    <div th:if="${param.L}">
+                        La variable tiene una longitud demaciado corta:
+                        <div th:if="${param.P}">
+                            contraseña
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
             <div th:if="${param.password}">
