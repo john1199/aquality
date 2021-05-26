@@ -77,12 +77,13 @@ public class UserController {
 
         //65 90 97 122
         for(int i =0;i<serDto.getName().length();i++){
-            if(serDto.getName().charAt(i)<65||serDto.getName().charAt(i)>122||(serDto.getName().charAt(i)<97||serDto.getName().charAt(i)>90)){
+            if(serDto.getName().charAt(i)<65||serDto.getName().charAt(i)>122||(serDto.getName().charAt(i)<97&&serDto.getName().charAt(i)>90)){
+                
                 return "II&N";
             }
         }
         for(int i =0;i<serDto.getSurname().length();i++){
-            if(serDto.getSurname().charAt(i)<65||serDto.getSurname().charAt(i)>122||(serDto.getSurname().charAt(i)<97||serDto.getSurname().charAt(i)>90)){
+            if(serDto.getSurname().charAt(i)<65||serDto.getSurname().charAt(i)>122||(serDto.getSurname().charAt(i)<97&&serDto.getSurname().charAt(i)>90)){
                 return "II&SN";
             }
         }
@@ -93,4 +94,5 @@ public class UserController {
 
         return null;
     }
+
 }
