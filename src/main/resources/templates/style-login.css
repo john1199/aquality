@@ -38,12 +38,12 @@ btn {
 }
 
 #botonlogin{
-  background-color: #ffa71f !important;
-  border-color: #e08905;
+  background-color: #30AF4E !important;
+  border-color: #228d3b;
 }
 
 #passf{
-  color: #ffffff !important;  
+  color: #ffffff !important;
 }
 
 #exampleInputPassword1::placeholder{
