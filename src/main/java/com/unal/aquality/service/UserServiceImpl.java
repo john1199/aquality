@@ -8,6 +8,8 @@ import org.bson.types.ObjectId;;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.xml.bind.SchemaOutputResolver;
 
 @Service
