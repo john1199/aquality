@@ -12,31 +12,22 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/register")
-    public String viewRegister(){
-        return "register";
-    }
-
-    @GetMapping("/login")
-    public String viewLogin(){
-        return "login";
-    }
-
     @PostMapping("/register")
     public String register(@ModelAttribute("user")UserDto userDto) throws Exception{
         String parametros = Error(userDto);
         if(parametros!=null){
             parametros = "alert&"+parametros;
+            return "redirect:/register?"+parametros;
         }else{
             User user = userService.registerUser(userDto);
             if (user != null) {
                 parametros= "success";
+                return "redirect:/login?"+parametros;
             } else {
                 parametros="error&EE";
+                return "redirect:/register?"+parametros;
             }
         }
-
-        return "redirect:/register?"+parametros;
     }
 
     @PostMapping("/login")
@@ -46,7 +37,7 @@ public class UserController {
         if(user != null){
             flag = userService.decode(password, user.getPassword());
             if(flag){
-                return "redirect:/login?success";
+                return "redirect:/home";
             }else{
                 return "redirect:/login?password";
             }
@@ -59,10 +50,22 @@ public class UserController {
         User user = userService.updateUser(userDto);
         return user.get_id();
     }
-    @GetMapping("/")
-    public String ss(@ModelAttribute UserDto userDto) throws Exception {
-        return "prueba";
+
+    @GetMapping("/register")
+    public String viewRegister(){
+        return "register";
     }
+
+    @GetMapping("/login")
+    public String viewLogin(){
+        return "login";
+    }
+
+    @GetMapping("/")
+    public String viewHome(){
+        return "HomePage/index";
+    }
+
     @ModelAttribute("user")
     public UserDto userDto(){
         return new UserDto();

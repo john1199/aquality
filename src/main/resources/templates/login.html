@@ -106,11 +106,11 @@
           <div class="px-lg-5 pt-lg-4 pb-lg-3 p-4 w-100">
             <img th:src="@{/images/logo.jpg}" class="logo img-fluid" alt="logo" />
           </div>
-          <div class="msg w-100" th:if="${param.success}">
-            <div class="alert alert-info m2 ">
-              Inicio Correcto!!
+            <div class="align-selft-center msg w-100" th:if="${param.success}">
+              <div class="alert alert-info m2 ">
+                Te has registrado correctamente!!
+              </div>
             </div>
-          </div>
           <div  class="align-selft-center msg w-100"  th:if="${param.password}">
             <div class="alert alert-info m2 ">
               Contraseña Incorrecta!!

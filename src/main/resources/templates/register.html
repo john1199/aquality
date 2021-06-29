@@ -24,7 +24,7 @@
       href="https://fonts.googleapis.com/css2?family=Spartan:wght@300;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../static/css/styleRegister.css" th:href="@{/css/styleRegister.css}"/>
+    <link rel="stylesheet"  th:href="@{/css/styleRegister.css}"/>
     <title>Hello, world!</title>
   </head>
   <body class="bg-dark">
@@ -107,11 +107,6 @@
             <img th:src="@{/images/logo.jpg}" class="logo img-fluid" alt="logo" />
           </div>
           <div class="col-auto bg-light ">
-            <div th:if="${param.success}">
-              <div class="alert alert-info m2 ">
-                Te has registrado correctamente!!
-              </div>
-            </div>
             <div th:if="${param.error}">
               <div class="alert alert-danger m2 ">
                 Registro no exitoso!!
@@ -120,7 +115,7 @@
                 </div>
               </div>
             </div>
-            <div th:if="${param.alert}">
+            <div class="align-selft-center w-100" th:if="${param.alert}">
               <div class="alert alert-warning m2 ">
                 <div th:if="${param.Empty}">
                   La variable esta vacia o no existe:
@@ -159,7 +154,7 @@
             </div>
           </div>
           <div class="px-lg-5 py-lg-4 p-4 w-100 align-selft-center">
-            <h1 class="mb-4 fw-bold">! Bienvenido ¡</h1>
+            <h1 class="fw-bold">! Bienvenido ¡</h1>
             <form class="mb-4" th:action="@{/register}" method="post" th:object="${user}">
               <div class="mb-3">
                 <label for="exampleInputId1" class="form-label fw-bold"
