@@ -92,7 +92,7 @@ public class UserController {
 
         //65 90 97 122
         for(int i =0;i<serDto.getName().length();i++){
-            if(serDto.getName().charAt(i)<65||serDto.getName().charAt(i)>122||(serDto.getName().charAt(i)<97&&serDto.getName().charAt(i)>90)){
+            if(serDto.getName().charAt(i)<65||serDto.getName().charAt(i)>184||(serDto.getName().charAt(i)<97&&serDto.getName().charAt(i)>90)||(serDto.getName().charAt(i)<127&&serDto.getName().charAt(i)>122)||(serDto.getName().charAt(i)<160&&serDto.getName().charAt(i)>154)){
                 
                 return "II&N";
             }
