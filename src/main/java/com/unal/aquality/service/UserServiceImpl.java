@@ -1,6 +1,6 @@
 package com.unal.aquality.service;
 
-import com.unal.aquality.controller.UserDto;
+import com.unal.aquality.controller.dto.UserDto;
 import com.unal.aquality.model.Rol;
 import com.unal.aquality.model.User;
 import com.unal.aquality.repository.UserRepository;

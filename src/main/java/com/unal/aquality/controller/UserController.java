@@ -1,5 +1,6 @@
 package com.unal.aquality.controller;
 
+import com.unal.aquality.controller.dto.UserDto;
 import com.unal.aquality.model.User;
 import com.unal.aquality.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/register")
-    public String register(@ModelAttribute("user")UserDto userDto) throws Exception{
+    public String register(@ModelAttribute("user") UserDto userDto) throws Exception{
         String parametros = Error(userDto);
         if(parametros!=null){
             parametros = "alert&"+parametros;
@@ -49,21 +50,6 @@ public class UserController {
     public String update(@ModelAttribute("user")UserDto userDto) throws Exception {
         User user = userService.updateUser(userDto);
         return user.get_id();
-    }
-
-    @GetMapping("/register")
-    public String viewRegister(){
-        return "register";
-    }
-
-    @GetMapping("/login")
-    public String viewLogin(){
-        return "login";
-    }
-
-    @GetMapping("/")
-    public String viewHome(){
-        return "HomePage/index";
     }
 
     @ModelAttribute("user")

@@ -1,20 +1,17 @@
-package com.unal.aquality.model;
+package com.unal.aquality.controller.dto;
 
+import com.unal.aquality.model.Valoracion;
 import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.geo.GeoJson;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "WaterResources")
-public class FuenteHidrica {
+public class WaterSrcDto {
 
-    @Id
     private ObjectId _id;
     private String name;
     private GeoJson coordinates;
     private Valoracion valoracion;
 
-    public FuenteHidrica(String name, GeoJson geoJson, Valoracion valoracion) {
+    public WaterSrcDto(String name, GeoJson geoJson, Valoracion valoracion) {
         this.name = name;
         this.coordinates = geoJson;
         this.valoracion = valoracion;

@@ -1,4 +1,4 @@
-package com.unal.aquality.controller;
+package com.unal.aquality.controller.dto;
 
 import com.unal.aquality.model.Rol;
 import org.bson.types.ObjectId;
