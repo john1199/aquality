@@ -46,6 +46,7 @@ public class UserController {
             return "redirect:/login?user";
         }
     }
+
     @PutMapping("/update")
     public String update(@ModelAttribute("user")UserDto userDto) throws Exception {
         User user = userService.updateUser(userDto);
