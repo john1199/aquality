@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Bootstrap CSS -->
-
+    
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -24,7 +24,7 @@
       href="https://fonts.googleapis.com/css2?family=Spartan:wght@300;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet"  th:href="@{/css/styleRegister.css}"/>
+    <link rel="stylesheet" href="./assets/CSS/style-login.css" th:href="@{/css/style-login.css}"/>
     <title>Hello, world!</title>
   </head>
   <body class="bg-dark">
@@ -53,23 +53,23 @@
               ></button>
             </div>
             <div class="carousel-inner">
-              <div class="carousel-item active img3 min-vh-100">
+              <div class="carousel-item active img1 min-vh-100">
                 <div class="carousel-caption d-none d-md-block">
-                  <h5 class="fw-bold">Monitorea tu fuente hidrica</h5>
+                  <h5 class="fw-bold">Agua de calidad xd</h5>
                   <a
                     href=""
                     class="text-muted text-decoration-none"
-                    > Pura es mejor </a
+                    >Texto</a
                   >
                 </div>
               </div>
-              <div class="carousel-item img4 min-vh-100">
+              <div class="carousel-item img2 min-vh-100">
                 <div class="carousel-caption d-none d-md-block">
-                  <h5 class="fw-bold">¿Sabes que calidad tiene tu agua?</h5>
+                  <h5 class="fw-bold">Agua de calidad xd</h5>
                   <a
                     href=""
                     class="text-muted text-decoration-none"
-                    >averigualo</a
+                    >Texto</a
                   >
                 </div>
               </div>
@@ -106,110 +106,25 @@
           <div class="px-lg-5 pt-lg-4 pb-lg-3 p-4 w-100">
             <img th:src="@{/images/logo.jpg}" class="logo img-fluid" alt="logo" />
           </div>
-          <div class="col-auto bg-light ">
-            <div th:if="${param.error}">
-              <div class="alert alert-danger m2 ">
-                Registro no exitoso!!
-                <div th:if="${param.EE}">
-                  El correo o el username ya existen
-                </div>
+            <div class="align-selft-center msg w-100" th:if="${param.success}">
+              <div class="alert alert-info m2 ">
+                Te has registrado correctamente!!
               </div>
             </div>
-            <div class="align-selft-center w-100" th:if="${param.alert}">
-              <div class="alert alert-warning m2 ">
-                <div th:if="${param.Empty}">
-                  La variable esta vacia o no existe:
-                  <div th:if="${param.N}">
-                    Nombre
-                  </div>
-                  <div th:if="${param.UN}">
-                    Nombre de usuario
-                  </div>
-                  <div th:if="${param.SN}">
-                    apellido
-                  </div>
-                  <div th:if="${param.E}">
-                    correo
-                  </div>
-                  <div th:if="${param.P}">
-                    contraseña
-                  </div>
-                </div>
-                <div th:if="${param.II}">
-                  La variable contiene caracteres erroneos:
-                  <div th:if="${param.N}">
-                    Nombre
-                  </div>
-                  <div th:if="${param.SN}">
-                    apellido
-                  </div>
-                </div>
-                <div th:if="${param.L}">
-                  La variable tiene una longitud demaciado corta:
-                  <div th:if="${param.P}">
-                    contraseña
-                  </div>
-                </div>
-              </div>
+          <div  class="align-selft-center msg w-100"  th:if="${param.password}">
+            <div class="alert alert-info m2 ">
+              Contraseña Incorrecta!!
+            </div>
+          </div>
+          <div  class="align-selft-center msg w-100"  th:if="${param.user}">
+            <div class="alert alert-info m2 ">
+              Usuario no existe!!
             </div>
           </div>
           <div class="px-lg-5 py-lg-4 p-4 w-100 align-selft-center">
-            <h1 class="fw-bold">! Bienvenido ¡</h1>
-            <form class="mb-4" th:action="@{/register}" method="post" th:object="${user}">
-              <div class="mb-3">
-                <label for="exampleInputId1" class="form-label fw-bold"
-                >Cédula</label
-                >
-                <input
-                        type="number"
-                        class="form-control bg-dark-x border-0"
-                        id="exampleInputId1"
-                        aria-describedby="emailHelp"
-                        placeholder="Ingresa tu cedula"
-                        th:field="*{document}"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="exampleInputName1" class="form-label fw-bold"
-                  >Nombre</label
-                >
-                <input
-                  type="text"
-                  class="form-control bg-dark-x border-0"
-                  id="exampleInputName1"
-                  aria-describedby="nameHelp"
-                  placeholder="Ingresa tu nombre"
-                  th:field="*{name}"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="exampleInputSurname1" class="form-label fw-bold"
-                >Apellido</label
-                >
-                <input
-                        type="text"
-                        class="form-control bg-dark-x border-0"
-                        id="exampleInputSurname1"
-                        aria-describedby="nameHelp"
-                        placeholder="Ingresa tu apellido"
-                        th:field="*{surname}"
-                />
-              </div>
-
-              <div class="mb-3">
-                <label for="exampleInputUsername1" class="form-label fw-bold"
-                >Username</label
-                >
-                <input
-                        type="text"
-                        class="form-control bg-dark-x border-0"
-                        id="exampleInputUsername1"
-                        aria-describedby="nameHelp"
-                        placeholder="Ingresa tu usuario"
-                        th:field="*{username}"
-                />
-              </div>
-              <div class="mb-3">
+            <h1 class="mb-4 fw-bold">Bienvenido de Vuelta</h1>
+            <form class="mb-5" th:action="@{/login}" method="post" th:object="${user}">
+              <div class="mb-4">
                 <label for="exampleInputEmail1" class="form-label fw-bold"
                   >Email</label
                 >
@@ -223,7 +138,7 @@
                                   
                 />
               </div>
-              <div class="mb-3">
+              <div class="mb-4">
                 <label for="exampleInputPassword1" class="form-label fw-bold"
                   >Contraseña</label
                 >
@@ -235,13 +150,15 @@
                   th:field="*{password}"
                   
                 />
+                <a href="" class="form-text text-muted text-decoration-none" id="passf"
+                  >¿Olvidaste tu contraseña?</a
+                >
               </div>
               <button type="submit" class="btn btn-primary w-100" id="botonlogin">
-                Registrarme
+                Iniciar Sesión
               </button>
             </form>
-
-            <p class="fw-bold text-muted text-center" id="passf">O registrate con</p>
+            <p class="fw-bold text-muted text-center" id="alternativelogin">O inicia sesión con</p>
             <div class="d-flex justify-content-around">
               <button
                 type="submit"
@@ -258,18 +175,13 @@
                 Facebook
               </button>
             </div>
-
-            <div class="d-flex justify-content-around">             
-              
             </div>
-          </div>
-
-         <div
+          <div
             class="text-center px-lg-5 pt-lg-3 pb-lg-4 pb-lg-4 w-100 mt-auto"
           >
-            <p class="d-inline-block mb-0">¿Ya tienes una cuenta?</p>
-            <a href="/" class="text-light fw-bold text-decoration-none"
-              th:href="@{/login}">Inicia sesion ahora</a
+            <p class="d-inline-block mb-0">¿No tienes una cuenta?</p>
+            <a th:href="@{/register}" class="text-light fw-bold text-decoration-none"
+              >Crea una ahora!!</a
             >
           </div>
         </div>

@@ -1,0 +1,61 @@
+:root {
+  --dark: #2472b3;
+  --dark-x: #457eae;
+  --light: #ffffff;
+}
+body {
+  font-family: "Spartan", sans-serif;
+  font-weight: 300;
+  color: var(--light);
+}
+.bg-dark {
+  background-color: var(--dark) !important;
+}
+.bg-dark-x {
+  background-color: var(--dark-x);
+  color: #ffffff;
+}
+.form-control,
+btn {
+  min-height: 3.125rem;
+  line-height: initial;
+}
+
+.logo {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.img1 {
+  background-image: url("../images/carousel1.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.img2 {
+  background-image: url("../images/carousel2.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+#botonlogin{
+  background-color: #30AF4E !important;
+  border-color: #228d3b;
+}
+
+#passf{
+  color: #ffffff !important;
+}
+
+#exampleInputPassword1::placeholder{
+  color: #ffffff !important;
+}
+
+#exampleInputEmail1::placeholder{
+  color: #ffffff !important;
+}
+
+#alternativelogin{
+  color: #ffFFFf !important;
+}
+.msg {
+}

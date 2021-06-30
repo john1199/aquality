@@ -1,15 +1,12 @@
 package com.unal.aquality.service;
 
-import com.unal.aquality.controller.UserDto;
+import com.unal.aquality.controller.dto.UserDto;
+import com.unal.aquality.model.Rol;
 import com.unal.aquality.model.User;
 import com.unal.aquality.repository.UserRepository;
 import org.bson.types.ObjectId;;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import javax.xml.bind.SchemaOutputResolver;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -37,9 +34,11 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public User registerUser(UserDto userDto) throws Exception{
-        System.out.println(userRepository.findByusername(userDto.getUsername()));
         if(userRepository.findByemail(userDto.getEmail()) == null && userRepository.findByusername(userDto.getUsername()) ==null){
-            User user = new User(userDto.getName(),userDto.getSurname(), userDto.getUsername(),userDto.getEmail(),userDto.getRol(),encode(userDto.getPassword()));
+            if(userDto.getRol() == null){
+                userDto.setRol(Rol.LOCAL);
+            }
+            User user = new User(userDto.getDocument(), userDto.getName(),userDto.getSurname(), userDto.getUsername(),userDto.getEmail(),userDto.getRol(),encode(userDto.getPassword()));
             return userRepository.save(user);
         }else{
             return null;
