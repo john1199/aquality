@@ -38,7 +38,7 @@ public class UserController {
         if(user != null){
             flag = userService.decode(password, user.getPassword());
             if(flag){
-                return "redirect:/home";
+                return "redirect:/";
             }else{
                 return "redirect:/login?password";
             }
