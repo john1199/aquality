@@ -11,12 +11,13 @@ public class WaterSrcDto {
     private GeoJson coordinates;
     private Valoracion valoracion;
 
-    public WaterSrcDto(String name, GeoJson geoJson, Valoracion valoracion) {
-        this.name = name;
-        this.coordinates = geoJson;
-        this.valoracion = valoracion;
+    public WaterSrcDto() {
     }
 
+    public WaterSrcDto(String name, Valoracion valoracion) {
+        this.name = name;
+        this.valoracion = valoracion;
+    }
     // ObjectId needs to be converted to string
     public String getId() {
         return _id.toHexString();

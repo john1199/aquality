@@ -2,13 +2,16 @@ package com.unal.aquality.model;
 
 public class Valoracion {
 
-    private Double pH;
-    private Double conductivity;
-    private Double temperature;
-    private Double turbidity;
-    private Double depth;
+    private double pH;
+    private double conductivity;
+    private double temperature;
+    private double turbidity;
+    private double depth;
 
-    public Valoracion(Double pH, Double conductivity, Double temperature, Double turbidity, Double depth) {
+    public Valoracion() {
+    }
+
+    public Valoracion(double pH, double conductivity, double temperature, double turbidity, double depth) {
         this.pH = pH;
         this.conductivity = conductivity;
         this.temperature = temperature;
@@ -16,27 +19,27 @@ public class Valoracion {
         this.depth = depth;
     }
 
-    public Double getpH() {
+    public double getpH() {
         return pH;
     }
 
-    public void setpH(Double pH) {
+    public void setpH(double pH) {
         this.pH = pH;
     }
 
-    public Double getConductivity() {
+    public double getConductivity() {
         return conductivity;
     }
 
-    public void setConductivity(Double conductivity) {
+    public void setConductivity(double conductivity) {
         this.conductivity = conductivity;
     }
 
-    public Double getTemperature() {
+    public double getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(Double temperature) {
+    public void setTemperature(double temperature) {
         this.temperature = temperature;
     }
 

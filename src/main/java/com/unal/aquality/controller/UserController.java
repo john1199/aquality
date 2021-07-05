@@ -33,7 +33,7 @@ public class UserController {
 
     @PostMapping("/login")
     public String login(@RequestParam String email, @RequestParam String password){
-        boolean flag = false;
+        boolean flag;
         User user = userService.userExist(email);
         if(user != null){
             flag = userService.decode(password, user.getPassword());

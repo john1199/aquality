@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register WaterSource</title>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+            crossorigin="anonymous"
+    />
+</head>
+<body>
+  <div class="align-selft-center msg w-100" th:if="${param.error}">
+    <div class="alert alert-danger m2 ">
+      Fuente Hidrica ya esta registrada!!
+    </div>
+  </div>
+  <div class="align-selft-center msg w-100" th:if="${param.success}">
+    <div class="alert alert-info m2 ">
+      Registrada Existoso!!
+    </div>
+  </div>
+  <table>
+      <tr th:each="fuente: ${fuentes}">
+          <td th:text="${fuente.name}"></td>
+      </tr>
+  </table>
+</body>
+</html>

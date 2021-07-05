@@ -12,14 +12,15 @@ public class FuenteHidrica {
     private ObjectId _id;
     private String name;
     private GeoJson coordinates;
-    private Valoracion valoracion;
+    private Valoracion valoracion = new Valoracion();
 
-    public FuenteHidrica(String name, GeoJson geoJson, Valoracion valoracion) {
+    public  FuenteHidrica(){
+
+    }
+    public FuenteHidrica(String name, Valoracion valoracion) {
         this.name = name;
-        this.coordinates = geoJson;
         this.valoracion = valoracion;
     }
-
     // ObjectId needs to be converted to string
     public String getId() {
         return _id.toHexString();

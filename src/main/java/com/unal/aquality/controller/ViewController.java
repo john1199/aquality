@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class ViewController {
 
+    @GetMapping("/")
+    public String viewHome(){
+        return "HomePage/index";
+    }
+
     @GetMapping("/login")
     public String viewLogin(){
         return "login";
@@ -20,14 +25,19 @@ public class ViewController {
         return "register";
     }
 
+    @GetMapping("/list")
+    public String list(){
+        return "list";
+    }
+
+    @GetMapping("/registerWaterSrc")
+    public String viewRegisterWaterSrc(){
+        return "registerWaterSrc";
+    }
+
     @ModelAttribute("user")
     public UserDto userDto(){
         return new UserDto();
-    }
-
-    @GetMapping("/")
-    public String viewHome(){
-        return "HomePage/index";
     }
 
 }
