@@ -2,14 +2,13 @@
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="./assets/CSS/style-map.css" th:href="@{/css/style-map.css}"/>
 </head>
 <style>
 
   @import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Josefin+Slab|Arvo|Lato|Vollkorn|Abril+Fatface|Old+Standard+TT|Droid+Sans|Lobster|Inconsolata|Montserrat|Playfair+Display|Karla|Alegreya|Libre+Baskerville|Merriweather|Lora|Archivo+Narrow|Neuton|Signika|Questrial|Fjalla+One|Bitter|Varela+Round);
 
   .background {
-    fill: #eee;
+    fill: #08d5ff;
     pointer-events: all;
   }
   .map-layer {
@@ -71,10 +70,13 @@
 
   var style =
       "display: flex; " +
-      "justify-content: center;";
-  var div = d3.select('div').attr("style","display: flex; justify-content: center;");
+      "justify-content: center; " +
+      "align-items: center; " +
+      "margin-top: 150px";
 
-  var body = d3.select('body')
+  var div = d3.select('div').attr("style",style);
+
+  var body = d3.select('body').attr("style", "background-color: #08b2ff");
   // Set svg width & height
   var svg = d3.select('svg')
           .attr('width', width)

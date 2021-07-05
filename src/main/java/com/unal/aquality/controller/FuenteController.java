@@ -34,7 +34,7 @@ public class FuenteController {
         model.addAttribute("fuentes",fuenteHidricaList);
         return "map";
     }
-
+/*
     @PostMapping("/register")
     public String register(@ModelAttribute("waterSrc")WaterSrcDto waterSrcDto) throws Exception{
         FuenteHidrica fuenteHidrica = watersrcService.registerWaterSrc(waterSrcDto);
@@ -44,7 +44,7 @@ public class FuenteController {
             return "redirect:/registerWaterSrc?success";
         }
     }
-
+*/
 
     @ModelAttribute("waterSrc")
     public WaterSrcDto waterSrcDto(){
