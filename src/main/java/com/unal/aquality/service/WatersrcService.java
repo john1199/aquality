@@ -9,6 +9,7 @@ import java.util.List;
 public interface WatersrcService {
     List<FuenteHidrica> listWaterSrc() throws Exception;
     FuenteHidrica registerWaterSrc(WaterSrcDto waterSrcDto) throws Exception;
-    FuenteHidrica updateWaterSrc(WaterSrcDto waterSrcDto) throws Exception;
+    FuenteHidrica updateWaterSrc(WaterSrcDto waterSrcDto);
+    FuenteHidrica getWaterSrc(ObjectId id);
     ObjectId deleteWaterSrc(ObjectId id);
 }
