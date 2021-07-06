@@ -2,6 +2,7 @@ package com.unal.aquality.service;
 
 import com.unal.aquality.controller.dto.WaterSrcDto;
 import com.unal.aquality.model.FuenteHidrica;
+import com.unal.aquality.model.User;
 import com.unal.aquality.model.Valoracion;
 import com.unal.aquality.repository.WaterSrcRepository;
 import org.bson.types.ObjectId;
@@ -18,6 +19,7 @@ public class WatersrcServiceImpl implements WatersrcService{
         super();
         this.waterSrcRepository = waterSrcRepository;
     }
+
     @Override
     public List<FuenteHidrica> listWaterSrc() throws Exception {
         List<FuenteHidrica> fuenteHidricaList;
@@ -45,13 +47,38 @@ public class WatersrcServiceImpl implements WatersrcService{
     }
 
     @Override
-    public FuenteHidrica updateWaterSrc(WaterSrcDto waterSrcDto) throws Exception {
-        return null;
+    public FuenteHidrica getWaterSrc(ObjectId userId){
+        try{
+            return waterSrcRepository.findBy_id(userId);
+        }catch (Exception e){
+            return null;
+        }
     }
 
     @Override
-    public ObjectId deleteWaterSrc(ObjectId id) {
-        return null;
+    public FuenteHidrica updateWaterSrc(WaterSrcDto waterSrcDto){
+
+        FuenteHidrica waterSrc = waterSrcRepository.findByname(waterSrcDto.getName());
+        if(waterSrc != null){
+            waterSrc.setName(waterSrcDto.getName());
+            waterSrc.setValoracion(waterSrcDto.getValoracion());
+            waterSrc.setGeoJson(waterSrcDto.getGeoJson());
+            waterSrcRepository.save(waterSrc);
+            return waterSrc;
+        }
+        else{
+            return null;
+        }
+    }
+
+    @Override
+    public ObjectId deleteWaterSrc(ObjectId waterSrcId) {
+        if (getWaterSrc(waterSrcId) == null) {
+            return null;
+        } else {
+            waterSrcRepository.deleteBy_id(waterSrcId);
+            return waterSrcId;
+        }
     }
 
 }
