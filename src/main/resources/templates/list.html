@@ -12,5 +12,10 @@
 </head>
 <body>
 
+<table>
+    <tr th:each="fuente : ${fuentes}">
+        <td th:text="${fuente.name}"></td>
+    </tr>
+</table>
 </body>
 </html>

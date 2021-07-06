@@ -4,21 +4,21 @@ import java.util.ArrayList;
 
 public class Valoracion {
 
-    private ArrayList<Double> pH;
-    private ArrayList<Double> conductivity;
-    private ArrayList<Double> temperature;
-    private ArrayList<Double> turbidity;
-    private ArrayList<Double> depth;
+    private ArrayList<Double> pH = new ArrayList<>();
+    private ArrayList<Double> conductivity= new ArrayList<>();
+    private ArrayList<Double> temperature= new ArrayList<>();
+    private ArrayList<Double> turbidity= new ArrayList<>();
+    private ArrayList<Double> depth= new ArrayList<>();
 
     public Valoracion() {
     }
 
-    public Valoracion(ArrayList<Double> pH, ArrayList<Double> conductivity, ArrayList<Double> temperature, ArrayList<Double> turbidity, ArrayList<Double> depth) {
-        this.pH = pH;
-        this.conductivity = conductivity;
-        this.temperature = temperature;
-        this.turbidity = turbidity;
-        this.depth = depth;
+    public Valoracion(double pH, double conductivity, double temperature, double turbidity, double depth) {
+        this.pH.add(pH);
+        this.conductivity.add(conductivity);
+        this.temperature.add(temperature);
+        this.turbidity.add(turbidity);
+        this.depth.add(depth);
     }
 
     public ArrayList<Double> getpH() {

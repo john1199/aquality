@@ -21,7 +21,7 @@ public class FuenteRestController {
     public FuenteRestController(WatersrcService watersrcService){
         this.watersrcService = watersrcService;
     }
-
+/*
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody WaterSrcDto waterSrcDto) throws Exception{
         System.out.println(waterSrcDto.getName());
@@ -35,8 +35,8 @@ public class FuenteRestController {
             return new ResponseEntity<>(res, HttpStatus.OK);
         }
     }
-
-    @DeleteMapping("/{id}")
+*/
+    @DeleteMapping("source/{id}")
     public ResponseEntity<?> delete(@RequestParam() ObjectId id) throws Exception{
         ObjectId id_ = watersrcService.deleteWaterSrc(id);
         Map<String, Object> res = new HashMap<>();

@@ -11,6 +11,8 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.geo.GeoJson;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -18,7 +20,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/watersource")
@@ -32,17 +36,25 @@ public class FuenteController {
     }
 
     @GetMapping("/map")
-    public String list(Model  model) throws Exception {
+    public String map(Model  model) throws Exception {
         List<FuenteHidrica> fuenteHidricaList = watersrcService.listWaterSrc();
         model.addAttribute("fuentes",fuenteHidricaList);
         return "map";
     }
-
+    @GetMapping("/adminWaterSrc")
+    public String list(Model  model) throws Exception {
+        List<FuenteHidrica> fuenteHidricaList = watersrcService.listWaterSrc();
+        model.addAttribute("fuentes",fuenteHidricaList);
+        return "adminWaterSrc";
+    }
     @DeleteMapping("/{id}")
     public String delete(@RequestParam()ObjectId id){
-
-        watersrcService.deleteWaterSrc(id);
-        return "error";
+        ObjectId objectId =  watersrcService.deleteWaterSrc(id);
+        if(objectId == null){
+            return "redirect:/adminWaterSrc?error";
+        }else{
+            return "redirect:/adminWaterSrc?success";
+        }
     }
 
 /*
@@ -56,16 +68,23 @@ public class FuenteController {
         }
     }
 */
-<<<<<<< HEAD
-=======
-
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody WaterSrcDto waterSrcDto) throws Exception{
+        Map<String, Object> res = new HashMap<>();
+        FuenteHidrica fuenteHidrica = watersrcService.registerWaterSrc(waterSrcDto);
+        res.put("fuente", fuenteHidrica);
+        if(fuenteHidrica == null){
+            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
+        }else{
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        }
+    }
     @PutMapping("/update")
     public String update(@ModelAttribute("waterSrc")WaterSrcDto waterSrcDto) throws Exception {
         FuenteHidrica fuenteHidrica = watersrcService.updateWaterSrc(waterSrcDto);
         return fuenteHidrica.getId();
     }
 
->>>>>>> 4ab3ba942380dae276c2796c9d355da43e3769fe
     @ModelAttribute("waterSrc")
     public WaterSrcDto waterSrcDto(){
         return new WaterSrcDto();

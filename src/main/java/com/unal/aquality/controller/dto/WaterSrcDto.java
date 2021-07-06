@@ -9,12 +9,12 @@ public class WaterSrcDto {
     private ObjectId _id;
     private String name;
     private GeoJson coordinates;
-    private Valoracion valoracion;
+    private ValoracionDto valoracion;
 
     public WaterSrcDto() {
     }
 
-    public WaterSrcDto(String name, Valoracion valoracion) {
+    public WaterSrcDto(String name, ValoracionDto valoracion) {
         this.name = name;
         this.valoracion = valoracion;
     }
@@ -43,11 +43,11 @@ public class WaterSrcDto {
         this.coordinates = geoJson;
     }
 
-    public Valoracion getValoracion() {
+    public ValoracionDto getValoracion() {
         return valoracion;
     }
 
-    public void setValoracion(Valoracion valoracion) {
+    public void setValoracion(ValoracionDto valoracion) {
         this.valoracion = valoracion;
     }
 }

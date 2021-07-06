@@ -30,6 +30,11 @@ public class ViewController {
         return "list";
     }
 
+    @GetMapping("/adminWaterSrc")
+    public String adminWaterSrc(){
+        return "adminWaterSrc";
+    }
+
     @GetMapping("/registerWaterSrc")
     public String viewRegisterWaterSrc(){
         return "registerWaterSrc";
