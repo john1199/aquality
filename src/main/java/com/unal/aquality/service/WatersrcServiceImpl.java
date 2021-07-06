@@ -31,9 +31,13 @@ public class WatersrcServiceImpl implements WatersrcService{
 
     @Override
     public FuenteHidrica registerWaterSrc(WaterSrcDto waterSrcDto) throws Exception {
+        FuenteHidrica fuenteHidrica = waterSrcRepository.findByname(waterSrcDto.getName());
+        if( fuenteHidrica != null){
+
+        }
         if(waterSrcRepository.findByname(waterSrcDto.getName()) == null){
             Valoracion valoracion = new Valoracion(waterSrcDto.getValoracion().getpH(),waterSrcDto.getValoracion().getConductivity(),waterSrcDto.getValoracion().getTemperature(),waterSrcDto.getValoracion().getTurbidity(),waterSrcDto.getValoracion().getDepth());
-            FuenteHidrica fuenteHidrica = new FuenteHidrica(waterSrcDto.getName(),valoracion);
+            fuenteHidrica = new FuenteHidrica(waterSrcDto.getName(),valoracion);
             return waterSrcRepository.save(fuenteHidrica);
         }else {
             return null;
@@ -49,4 +53,5 @@ public class WatersrcServiceImpl implements WatersrcService{
     public ObjectId deleteWaterSrc(ObjectId id) {
         return null;
     }
+
 }

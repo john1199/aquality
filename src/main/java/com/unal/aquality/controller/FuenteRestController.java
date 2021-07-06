@@ -3,6 +3,7 @@ package com.unal.aquality.controller;
 import com.unal.aquality.controller.dto.WaterSrcDto;
 import com.unal.aquality.model.FuenteHidrica;
 import com.unal.aquality.service.WatersrcService;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,4 +36,14 @@ public class FuenteRestController {
         }
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@RequestParam() ObjectId id) throws Exception{
+        ObjectId id_ = watersrcService.deleteWaterSrc(id);
+        Map<String, Object> res = new HashMap<>();
+        if(id_ == null){
+            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
+        }else{
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        }
+    }
 }

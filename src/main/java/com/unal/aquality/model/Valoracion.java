@@ -1,17 +1,19 @@
 package com.unal.aquality.model;
 
+import java.util.ArrayList;
+
 public class Valoracion {
 
-    private double pH;
-    private double conductivity;
-    private double temperature;
-    private double turbidity;
-    private double depth;
+    private ArrayList<Double> pH;
+    private ArrayList<Double> conductivity;
+    private ArrayList<Double> temperature;
+    private ArrayList<Double> turbidity;
+    private ArrayList<Double> depth;
 
     public Valoracion() {
     }
 
-    public Valoracion(double pH, double conductivity, double temperature, double turbidity, double depth) {
+    public Valoracion(ArrayList<Double> pH, ArrayList<Double> conductivity, ArrayList<Double> temperature, ArrayList<Double> turbidity, ArrayList<Double> depth) {
         this.pH = pH;
         this.conductivity = conductivity;
         this.temperature = temperature;
@@ -19,43 +21,43 @@ public class Valoracion {
         this.depth = depth;
     }
 
-    public double getpH() {
+    public ArrayList<Double> getpH() {
         return pH;
     }
 
-    public void setpH(double pH) {
+    public void setpH(ArrayList<Double> pH) {
         this.pH = pH;
     }
 
-    public double getConductivity() {
+    public ArrayList<Double> getConductivity() {
         return conductivity;
     }
 
-    public void setConductivity(double conductivity) {
+    public void setConductivity(ArrayList<Double> conductivity) {
         this.conductivity = conductivity;
     }
 
-    public double getTemperature() {
+    public ArrayList<Double> getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(double temperature) {
+    public void setTemperature(ArrayList<Double> temperature) {
         this.temperature = temperature;
     }
 
-    public Double getTurbidity() {
+    public ArrayList<Double> getTurbidity() {
         return turbidity;
     }
 
-    public void setTurbidity(Double turbidity) {
+    public void setTurbidity(ArrayList<Double> turbidity) {
         this.turbidity = turbidity;
     }
 
-    public Double getDepth() {
+    public ArrayList<Double> getDepth() {
         return depth;
     }
 
-    public void setDepth(Double depth) {
+    public void setDepth(ArrayList<Double> depth) {
         this.depth = depth;
     }
 }
