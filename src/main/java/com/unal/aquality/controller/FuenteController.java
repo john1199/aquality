@@ -3,11 +3,14 @@ package com.unal.aquality.controller;
 import com.unal.aquality.controller.dto.UserDto;
 import com.unal.aquality.controller.dto.WaterSrcDto;
 import com.unal.aquality.model.FuenteHidrica;
+import com.unal.aquality.model.User;
 import com.unal.aquality.model.Valoracion;
 import com.unal.aquality.repository.WaterSrcRepository;
 import com.unal.aquality.service.WatersrcService;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.geo.GeoJson;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -34,6 +37,14 @@ public class FuenteController {
         model.addAttribute("fuentes",fuenteHidricaList);
         return "map";
     }
+
+    @DeleteMapping("/{id}")
+    public String delete(@RequestParam()ObjectId id){
+
+        watersrcService.deleteWaterSrc(id);
+        return "error";
+    }
+
 /*
     @PostMapping("/register")
     public String register(@ModelAttribute("waterSrc")WaterSrcDto waterSrcDto) throws Exception{
@@ -45,6 +56,12 @@ public class FuenteController {
         }
     }
 */
+
+    @PutMapping("/update")
+    public String update(@ModelAttribute("waterSrc")WaterSrcDto waterSrcDto) throws Exception {
+        FuenteHidrica fuenteHidrica = watersrcService.updateWaterSrc(waterSrcDto);
+        return fuenteHidrica.getId();
+    }
 
     @ModelAttribute("waterSrc")
     public WaterSrcDto waterSrcDto(){

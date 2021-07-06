@@ -3,6 +3,7 @@ package com.unal.aquality.controller;
 import com.unal.aquality.controller.dto.UserDto;
 import com.unal.aquality.model.User;
 import com.unal.aquality.service.UserService;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -45,6 +46,13 @@ public class UserController {
         }else{
             return "redirect:/login?user";
         }
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@RequestParam() ObjectId id){
+
+        userService.deleteUser(id);
+        return "error";
     }
 
     @PutMapping("/update")
