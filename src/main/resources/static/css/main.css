@@ -34,7 +34,10 @@ body {
 ol, ul {
 	list-style: none;
 }
-
+/* admin*/
+.minh-100 {
+	height: 100vh;
+}
 blockquote, q {
 	quotes: none;
 }

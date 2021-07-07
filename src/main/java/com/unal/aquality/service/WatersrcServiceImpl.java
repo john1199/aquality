@@ -30,7 +30,11 @@ public class WatersrcServiceImpl implements WatersrcService{
             return null;
         }
     }
-
+    @Override
+    public FuenteHidrica getFuente(String name){
+        FuenteHidrica fuenteHidrica = waterSrcRepository.findByname(name);
+        return fuenteHidrica;
+    }
     @Override
     public FuenteHidrica registerWaterSrc(WaterSrcDto waterSrcDto) throws Exception {
         FuenteHidrica fuenteHidrica = waterSrcRepository.findByname(waterSrcDto.getName());

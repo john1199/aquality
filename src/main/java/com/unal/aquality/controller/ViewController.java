@@ -35,7 +35,7 @@ public class ViewController {
         return "adminWaterSrc";
     }
 
-    @GetMapping("/registerWaterSrc")
+    @GetMapping("/watersource/registerWaterSrc")
     public String viewRegisterWaterSrc(){
         return "registerWaterSrc";
     }
