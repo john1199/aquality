@@ -60,4 +60,65 @@ public class Valoracion {
     public void setDepth(ArrayList<Double> depth) {
         this.depth = depth;
     }
+
+    public Double getPromedioPh(){
+
+        Double promedioPh = 0.0;
+        for(int i = 0; i < this.pH.size(); i++){
+            promedioPh += this.pH.get(i);
+        }
+
+        promedioPh = promedioPh/this.pH.size();
+        return promedioPh;
+
+    }
+
+    public Double getPromedioConductividad(){
+
+        Double promedioConductividad = 0.0;
+        for(int i = 0; i < this.conductivity.size(); i++){
+            promedioConductividad += this.conductivity.get(i);
+        }
+
+        promedioConductividad = promedioConductividad/this.conductivity.size();
+        return promedioConductividad;
+
+    }
+
+    public Double getPromedioTemperatura(){
+
+        Double promedioTemp = 0.0;
+        for(int i = 0; i < this.temperature.size(); i++){
+            promedioTemp += this.temperature.get(i);
+        }
+
+        promedioTemp = promedioTemp/this.temperature.size();
+        return promedioTemp;
+
+    }
+
+    public Double getPromedioTurbidez(){
+
+        Double promedioTurb = 0.0;
+        for(int i = 0; i < this.turbidity.size(); i++){
+            promedioTurb += this.turbidity.get(i);
+        }
+
+        promedioTurb = promedioTurb/this.turbidity.size();
+        return promedioTurb;
+
+    }
+
+    public Double getPromedioProfundidad(){
+
+        Double promedioProf = 0.0;
+        for(int i = 0; i < this.depth.size(); i++){
+            promedioProf += this.depth.get(i);
+        }
+
+        promedioProf = promedioProf/this.depth.size();
+        return promedioProf;
+
+    }
+
 }
