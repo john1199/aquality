@@ -8,6 +8,8 @@ import org.bson.types.ObjectId;;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -25,6 +27,14 @@ public class UserServiceImpl implements UserService {
             return null;
         }
     }
+    @Override
+    public List<User> userList(){
+        try{
+            return userRepository.findAll();
+        }catch (Exception e){
+            return null;
+        }
+    }
     public User userExist(String email){
         try{
             return userRepository.findByemail(email);
@@ -37,6 +47,8 @@ public class UserServiceImpl implements UserService {
         if(userRepository.findByemail(userDto.getEmail()) == null && userRepository.findByusername(userDto.getUsername()) ==null){
             if(userDto.getRol() == null){
                 userDto.setRol(Rol.LOCAL);
+            }else {
+                userDto.setRol(Rol.ADMIN);
             }
             User user = new User(userDto.getDocument(), userDto.getName(),userDto.getSurname(), userDto.getUsername(),userDto.getEmail(),userDto.getRol(),encode(userDto.getPassword()));
             return userRepository.save(user);

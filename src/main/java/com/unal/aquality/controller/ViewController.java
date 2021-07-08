@@ -25,6 +25,23 @@ public class ViewController {
         return "register";
     }
 
+
+    @GetMapping("/mapa")
+    public String mapa(){
+        return "HomePage/mapa";
+    }
+
+    @GetMapping("/sistema")
+    public String sistema(){
+        return "HomePage/sistema";
+    }
+
+    @GetMapping("/historico")
+    public String historico(){
+        return "HomePage/historico";
+    }
+
+
     @GetMapping("/list")
     public String list(){
         return "list";

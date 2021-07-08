@@ -106,53 +106,13 @@
           <div class="px-lg-5 pt-lg-4 pb-lg-3 p-4 w-100">
             <img th:src="@{/images/logo.jpg}" class="logo img-fluid" alt="logo" />
           </div>
-          <div class="col-auto bg-light ">
-            <div th:if="${param.error}">
-              <div class="alert alert-danger m2 ">
-                Registro no exitoso!!
-                <div th:if="${param.EE}">
-                  El correo o el username ya existen
-                </div>
-              </div>
-            </div>
-            <div class="align-selft-center msg w-100" th:if="${param.alert}">
-              <div class="alert alert-warning m2 ">
-                <div th:if="${param.Empty}">
-                  La variable esta vacia o no existe:
-                  <div th:if="${param.N}">
-                    Nombre
-                  </div>
-                  <div th:if="${param.UN}">
-                    Nombre de usuario
-                  </div>
-                  <div th:if="${param.SN}">
-                    apellido
-                  </div>
-                  <div th:if="${param.E}">
-                    correo
-                  </div>
-                  <div th:if="${param.P}">
-                    contraseña
-                  </div>
-                </div>
-                <div th:if="${param.II}">
-                  La variable contiene caracteres erroneos:
-                  <div th:if="${param.N}">
-                    Nombre
-                  </div>
-                  <div th:if="${param.SN}">
-                    apellido
-                  </div>
-                </div>
-                <div th:if="${param.L}">
-                  La variable tiene una longitud demaciado corta:
-                  <div th:if="${param.P}">
-                    contraseña
-                  </div>
-                </div>
-              </div>
+
+          <div  class="align-selft-center msg w-100"  th:if="${param.error}">
+            <div class="alert alert-info m2 ">
+              Correo ya existe!!
             </div>
           </div>
+
           <div class="px-lg-5 py-lg-4 p-4 w-100 align-selft-center">
             <h1 class="fw-bold">! Bienvenido ¡</h1>
             <form class="mb-4" th:action="@{/register}" method="post" th:object="${user}">

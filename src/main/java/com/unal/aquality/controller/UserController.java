@@ -1,12 +1,17 @@
 package com.unal.aquality.controller;
 
 import com.unal.aquality.controller.dto.UserDto;
+import com.unal.aquality.model.FuenteHidrica;
+import com.unal.aquality.model.Rol;
 import com.unal.aquality.model.User;
 import com.unal.aquality.service.UserService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/")
@@ -16,20 +21,13 @@ public class UserController {
 
     @PostMapping("/register")
     public String register(@ModelAttribute("user") UserDto userDto) throws Exception{
-        String parametros = Error(userDto);
-        if(parametros!=null){
-            parametros = "alert&"+parametros;
-            return "redirect:/register?"+parametros;
-        }else{
+
             User user = userService.registerUser(userDto);
             if (user != null) {
-                parametros= "success";
-                return "redirect:/login?"+parametros;
+                return "redirect:/login?success";
             } else {
-                parametros="error&EE";
-                return "redirect:/register?"+parametros;
+                return "redirect:/register?error";
             }
-        }
     }
 
     @PostMapping("/login")
@@ -39,7 +37,11 @@ public class UserController {
         if(user != null){
             flag = userService.decode(password, user.getPassword());
             if(flag){
-                return "redirect:/";
+                if(user.getRol() == Rol.ADMIN){
+                    return "redirect:/watersource/adminWaterSrc";
+                }else {
+                    return "redirect:/sistema";
+                }
             }else{
                 return "redirect:/login?password";
             }
@@ -47,7 +49,12 @@ public class UserController {
             return "redirect:/login?user";
         }
     }
-
+    @GetMapping("/users")
+    public String list(Model model) throws Exception {
+        List<User> userList = userService.userList();
+        model.addAttribute("users",userList);
+        return "adminWaterSrc";
+    }
     @DeleteMapping("/{id}")
     public String delete(@RequestParam() ObjectId id){
 

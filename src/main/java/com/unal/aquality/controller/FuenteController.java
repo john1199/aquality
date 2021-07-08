@@ -2,6 +2,8 @@ package com.unal.aquality.controller;
 
 import com.unal.aquality.controller.dto.WaterSrcDto;
 import com.unal.aquality.model.FuenteHidrica;
+import com.unal.aquality.model.User;
+import com.unal.aquality.service.UserService;
 import com.unal.aquality.service.WatersrcService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +28,8 @@ public class FuenteController {
         this.watersrcService = watersrcService;
     }
 
+    @Autowired
+    UserService userService;
     @GetMapping()
     public ResponseEntity<?> getFuente(@RequestParam String name){
         Map<String, Object> res = new HashMap<>();
@@ -48,8 +53,17 @@ public class FuenteController {
         model.addAttribute("fuentes",fuenteHidricaList);
         return "adminWaterSrc";
     }
-    @DeleteMapping("/{id}")
+    @PostMapping("/{id}")
     public String delete(@RequestParam()ObjectId id){
+        ObjectId objectId =  watersrcService.deleteWaterSrc(id);
+        if(objectId == null){
+            return "redirect:/watersource/adminWaterSrc?error";
+        }else{
+            return "redirect:/watersource/adminWaterSrc?success";
+        }
+    }
+    @DeleteMapping("/{id}")
+    public String del(@RequestParam()ObjectId id){
         ObjectId objectId =  watersrcService.deleteWaterSrc(id);
         if(objectId == null){
             return "redirect:/adminWaterSrc?error";
@@ -57,7 +71,6 @@ public class FuenteController {
             return "redirect:/adminWaterSrc?success";
         }
     }
-
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody WaterSrcDto waterSrcDto) throws Exception{
         Map<String, Object> res = new HashMap<>();
