@@ -44,11 +44,11 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public User registerUser(UserDto userDto) throws Exception{
-        if(userRepository.findByemail(userDto.getEmail()) == null && userRepository.findByusername(userDto.getUsername()) ==null){
+        if(userRepository.findByemail(userDto.getEmail()) == null){
             if(userDto.getRol() == null){
-                userDto.setRol(Rol.LOCAL);
+                userDto.setRol("LOCAL");
             }else {
-                userDto.setRol(Rol.ADMIN);
+                userDto.setRol("ADMIN");
             }
             User user = new User(userDto.getDocument(), userDto.getName(),userDto.getSurname(), userDto.getUsername(),userDto.getEmail(),userDto.getRol(),encode(userDto.getPassword()));
             return userRepository.save(user);

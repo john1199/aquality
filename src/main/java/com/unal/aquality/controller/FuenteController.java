@@ -41,15 +41,21 @@ public class FuenteController {
             return new ResponseEntity<>(res, HttpStatus.OK);
         }
     }
-    @GetMapping("/map")
-    public String map(Model  model) throws Exception {
+    @GetMapping("/list")
+    public ResponseEntity<?> map() throws Exception {
+        Map<String, Object> res = new HashMap<>();
         List<FuenteHidrica> fuenteHidricaList = watersrcService.listWaterSrc();
-        model.addAttribute("fuentes",fuenteHidricaList);
-        return "map";
+        res.put("fuente", fuenteHidricaList);
+        if(fuenteHidricaList == null){
+            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
+        }else{
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        }
     }
     @GetMapping("/adminWaterSrc")
     public String list(Model  model) throws Exception {
         List<FuenteHidrica> fuenteHidricaList = watersrcService.listWaterSrc();
+        System.out.println(fuenteHidricaList.get(0).getValoracion().getpH().get(fuenteHidricaList.get(0).getValoracion().getpH().size() - 1));
         model.addAttribute("fuentes",fuenteHidricaList);
         return "adminWaterSrc";
     }

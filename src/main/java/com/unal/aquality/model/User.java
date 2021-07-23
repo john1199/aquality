@@ -16,13 +16,13 @@ public class User {
             private String username;
 
             private String email;
-            private Rol rol;
+            private String rol;
             private String password;
 
             public User(){
 
             }
-            public User(int document, String name, String surname, String username, String email, Rol rol, String password) {
+            public User(int document, String name, String surname, String username, String email, String rol, String password) {
                 this.document = document;
                 this.name = name;
                 this.surname = surname;
@@ -81,11 +81,11 @@ public class User {
         this.email = email;
     }
 
-    public Rol getRol() {
+    public String getRol() {
         return rol;
     }
 
-    public void setRol(Rol rol) {
+    public void setRol(String rol) {
         this.rol = rol;
     }
 

@@ -47,11 +47,6 @@ public class ViewController {
         return "list";
     }
 
-    @GetMapping("/adminWaterSrc")
-    public String adminWaterSrc(){
-        return "adminWaterSrc";
-    }
-
     @GetMapping("/watersource/registerWaterSrc")
     public String viewRegisterWaterSrc(){
         return "registerWaterSrc";

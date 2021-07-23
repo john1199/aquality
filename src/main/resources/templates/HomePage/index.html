@@ -30,7 +30,7 @@
 								<ul>
 									<li><a th:href="@{/mapa}">Monitorea las Fuentes Hídricas</a></li>
 									<li><a th:href="@{/historico}">Histórico</a></li>
-									<li><a th:href="@{/sistema}">Cartografía Nacional del Agua</a></li>
+									<li><a th:href="@{/watersource/adminWaterSrc}">Registro Fuentes Tiempo Real</a></li>
 								</ul>
 							</li>
 							<li><a th:href="@{/login}" >Sign In</a></li>
@@ -90,7 +90,7 @@
 						</header>
 						<p>Teniendo en cuenta la crisis del agua en Colombia y el sexto objetivo de desarrollo sostenible, nace la idea de crear una herramienta de bajo costo que utiliza internet de las cosas para la medición, gestión y control de la calidad del agua en tiempo real.</p>
 						<ul class="actions">
-							<li><a href="#" class="button">Learn More</a></li>
+							<li><a  th:href="@{/mapa}" class="button">Learn More</a></li>
 						</ul>
 					</div>
 					<a href="#three" class="goto-next scrolly">Next</a>
@@ -106,7 +106,7 @@
 						</header>
 						<p>Un programa pedagógico en el marco de la cuarta revolución industrial, buscando co-construir junto a estas comunidades circundantes a las fuentes hídricas, a fin de que en la medida de pertinencia, se empoderen de estas tecnologías para ejercer un apoyo en el bienestar de la hidrología y la salud en el país</p>
 						<ul class="actions">
-							<li><a href="#" class="button">Learn More</a></li>
+							<li><a th:href="@{/mapa}" class="button">Learn More</a></li>
 						</ul>
 					</div>
 					<a href="#four" class="goto-next scrolly">Next</a>

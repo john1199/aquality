@@ -37,7 +37,7 @@ public class UserController {
         if(user != null){
             flag = userService.decode(password, user.getPassword());
             if(flag){
-                if(user.getRol() == Rol.ADMIN){
+                if(user.getRol().toString().equals("ADMIN")){
                     return "redirect:/watersource/adminWaterSrc";
                 }else {
                     return "redirect:/sistema";

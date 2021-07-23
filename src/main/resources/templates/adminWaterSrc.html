@@ -10,74 +10,91 @@
     <noscript><link rel="stylesheet"  th:href="@{/css/noscript.css}"/></noscript>
     </head>
 <body>
-<div class="container">
-
-  <!-- Header -->
-  <header id="header" >
-    <h1 id="logo"><a th:href="@{/}">Aquality</a></h1>
-    <nav id="nav">
-      <ul>
-        <li><a th:href="@{/}">Home</a></li>
-        <li><a th:href="@{/login}" >Sign In</a></li>
-        <li><a th:href="@{/register}"class="button primary">Sign Up</a></li>
-      </ul>
-    </nav>
-  </header>
-</div>
-
-<div id="main" class="wrapper style1">
   <div class="container">
 
+    <!-- Header -->
+    <header id="header">
+      <h1 id="logo"><a th:href="@{/}">Aquality</a></h1>
+      <nav id="nav">
+        <ul>
+          <li><a th:href="@{/}">Home</a></li>
+          <li>
+            <a th:href="@{/}">Menu</a>
+            <ul>
+              <li><a th:href="@{/mapa}">Monitorea las Fuentes Hídricas</a></li>
+              <li><a th:href="@{/historico}">Histórico</a></li>
+              <li><a th:href="@{/watersource/adminWaterSrc}">Registro Fuentes Tiempo Real</a></li>
+            </ul>
+          </li>
+          <li><a th:href="@{/login}" >Sign In</a></li>
+          <li><a th:href="@{/register}"class="button primary">Sign Up</a></li>
+        </ul>
+      </nav>
+    </header>
+
+  <div id="main" class="wrapper style1">
     <div class="container">
 
-      <div class="align-selft-center w-100" th:if="${param.success}">
-        <div class="alert alert-info m2 ">
-          Eliminado correctamente!!
-        </div>
-      </div>
-      <div class="align-selft-center w-100" th:if="${param.error}">
-        <div class="alert alert-danger m2 ">
-          Problema al eliminar!!
-        </div>
-      </div>
+      <div class="container">
 
-      <div class="row">
-        <div class="col">
-          <button type="submit" class="btn btn-info mb-2" th:href="@{/watersource/adminWaterSrc}">Sincronizar Datos<i class="fas fa-sync"></i></button>
-          <table class="table table-dark table-hover table-bordered">
-            <thead>
-            <tr>
-              <th scope="col">Nombre Fuente</th>
-              <th scope="col">PH</th>
-              <th scope="col">Temperatura</th>
-              <th scope="col">Conductividad</th>
-              <th scope="col">Profundidad</th>
-              <th scope="col">Turbidez</th>
-              <th scope="col">Editar</th>
-              <th scope="col">Eliminar</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="fuente : ${fuentes}">
-              <td th:text="${fuente.name}"></td>
-              <td th:text="${fuente.valoracion.getpH()[fuente.valoracion.getpH().size()-1]}"></td>
-              <td th:text="${fuente.valoracion.getTemperature()[fuente.valoracion.getTemperature().size()-1]}"></td>
-              <td th:text="${fuente.valoracion.getConductivity()[fuente.valoracion.getConductivity().size()-1]}"></td>
-              <td th:text="${fuente.valoracion.getDepth()[fuente.valoracion.getDepth().size()-1]}"></td>
-              <td th:text="${fuente.valoracion.getTurbidity()[fuente.valoracion.getTurbidity().size()-1]}"></td>
-              <td><button class="btn btn-primary w-100"><i class="fa fa-edit"></i></button></td>
-              <td>
-                <form th:action="@{'/watersource/delete/?id=' + ${fuente.id}}" method="post">
-                  <button type="submit" class="btn btn-danger w-100"><i class="fa fa-trash"></i></button>
-                </form>
-            </tr>
-            </tbody>
-          </table>
-          </table>
+        <div class="align-selft-center w-100" th:if="${param.success}">
+          <div class="alert alert-info m2 ">
+            Eliminado correctamente!!
+          </div>
         </div>
-      </div>
+        <div class="align-selft-center w-100" th:if="${param.error}">
+          <div class="alert alert-danger m2 ">
+            Problema al eliminar!!
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <button type="submit" class="btn btn-info mb-2" th:href="@{/watersource/adminWaterSrc}">Sincronizar Datos<i class="fas fa-sync"></i></button>
+            <table class="table table-dark table-hover table-bordered">
+              <thead>
+              <tr>
+                <th scope="col">Nombre Fuente</th>
+                <th scope="col">PH</th>
+                <th scope="col">Temperatura</th>
+                <th scope="col">Conductividad</th>
+                <th scope="col">Profundidad</th>
+                <th scope="col">Turbidez</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="fuente : ${fuentes}">
+                <td th:text="${fuente.name}"></td>
+                <td th:text="${fuente.valoracion.pH.get(fuente.valoracion.pH.size()-1)}"></td>
+                <td th:text="${fuente.valoracion.temperature.get(fuente.valoracion.temperature.size()-1)}"></td>
+                <td th:text="${fuente.valoracion.conductivity.get(fuente.valoracion.conductivity.size()-1)}"></td>
+                <td th:text="${fuente.valoracion.depth.get(fuente.valoracion.depth.size()-1)}"></td>
+                <td th:text="${fuente.valoracion.turbidity.get(fuente.valoracion.turbidity.size()-1)}"></td>
+                <td><button class="btn btn-primary w-100"><i class="fa fa-edit"></i></button></td>
+                <td>
+                  <form th:action="@{'/watersource/delete/?id=' + ${fuente.id}}" method="post">
+                    <button type="submit" class="btn btn-danger w-100"><i class="fa fa-trash"></i></button>
+                  </form>
+              </tr>
+              </tbody>
+            </table>
+            </table>
+          </div>
+        </div>
+    </div>
   </div>
-</div>
-</div>
+  </div>
+    <!-- Scripts -->
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/jquery.scrolly.min.js}"></script>
+    <script th:src="@{/js/jquery.dropotron.min.js}"></script>
+    <script th:src="@{/js/jquery.scrollex.min.js}"></script>
+    <script th:src="@{/js/browser.min.js}"></script>
+    <script th:src="@{/js/breakpoints.min.js}"></script>
+    <script th:src="@{/js/util.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+
 </body>
 </html>
